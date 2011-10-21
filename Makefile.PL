@@ -42,7 +42,6 @@ requires 'XML::LibXML', 1.66;
 requires 'XML::SAX';
 
 test_requires 'Test::More';
-test_requires 'Test::Compile';
 
 auto_include;
 WriteAll;
