@@ -1,5 +1,3 @@
-# $Id: /mirror/coderepos/lang/perl/XML-LibXML-SAX-ChunkParser/trunk/lib/XML/LibXML/SAX/ChunkParser.pm 87623 2008-10-09T08:23:46.440905Z daisuke  $
-
 package XML::LibXML::SAX::ChunkParser;
 use strict;
 use base qw(XML::SAX::Base);
@@ -57,7 +55,7 @@ XML::LibXML::SAX::ChunkParser - Parse XML Chunks Via LibXML SAX
 =head1 SYNOPSIS
 
   local $XML::SAX::ParserPackage = 'XML::LibXML::SAX::ChunkParser';
-  my $parser = XML::SAX::ParserFactory->new(Handler => $myhandler);
+  my $parser = XML::SAX::ParserFactory->parser(Handler => $myhandler);
 
   $parser->parse_chunk($xml_chunk);
 
