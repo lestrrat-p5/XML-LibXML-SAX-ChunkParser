@@ -1,6 +1,11 @@
 Changes
 =======
 
+0.00004 - 21 Oct 2011
+  - Move to github
+  - Fix docs (rt #71797)
+  - Move pod tests to xt
+
 0.00003 - 09 Sep 2008
   - Remove previous instances of this module from ParserDetail.ini
 

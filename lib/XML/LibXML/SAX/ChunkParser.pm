@@ -4,7 +4,7 @@ use base qw(XML::SAX::Base);
 use XML::LibXML;
 use Carp qw(croak);
 
-our $VERSION = '0.00003';
+our $VERSION = '0.00004';
 
 sub parse_chunk {
     my ($self, $chunk) = @_;
