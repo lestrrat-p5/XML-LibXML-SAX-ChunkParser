@@ -43,7 +43,6 @@ requires 'XML::SAX';
 
 test_requires 'Test::More';
 
-auto_include;
 WriteAll;
 
 #sub MY::install {
