@@ -1,6 +1,9 @@
 Changes
 =======
 
+0.00005 - 28 Feb 2011
+  - Remove auto_include, and thus remove Test::More (rt #75361)
+
 0.00004 - 21 Oct 2011
   - Move to github
   - Fix docs (rt #71797)
