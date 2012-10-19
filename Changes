@@ -1,6 +1,11 @@
 Changes
 =======
 
+0.00006 - 20 Oct 2012
+    - No code change
+    - Upgrade to Module::Install 1.06
+      (see http://weblog.bulknews.net/post/33907905561/do-not-ship-modules-with-module-install-1-04)
+
 0.00005 - 28 Feb 2011
   - Remove auto_include, and thus remove Test::More (rt #75361)
 
