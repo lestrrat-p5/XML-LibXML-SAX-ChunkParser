@@ -4,16 +4,21 @@ use base qw(XML::SAX::Base);
 use XML::LibXML;
 use Carp qw(croak);
 
-our $VERSION = '0.00005';
+our $VERSION = '0.00006';
 
 sub DESTROY {
     my $self = shift;
+    $self->clean_parser;
+}
 
-    my $option = $self->{ParserOptions};
+sub clean_parser {
+    my $self = shift;
+
+    my $option = delete $self->{ParserOptions};
     if (! $option) {
         return;
     }
-    my $parser = $option->{LibParser};
+    my $parser = delete $option->{LibParser};
     if (! $parser) {
         return;
     }
@@ -21,17 +26,26 @@ sub DESTROY {
     $parser->set_handler( undef );
 }
 
-sub parse_chunk {
-    my ($self, $chunk) = @_;
+sub get_parser {
+    my $self = shift;
     my $options = $self->{ParserOptions};
     if (! $options) {
         $options = {};
-        $options->{LibParser} = XML::LibXML->new;
         $self->{ParserOptions} = $options;
     }
-    my $parser = $options->{LibParser};
-    $parser->set_handler($self);
 
+    my $parser = $options->{LibParser};
+    if (! $parser) {
+        $parser = $options->{LibParser} = XML::LibXML->new;
+        $parser->set_handler($self);
+    }
+    return $parser;
+}
+
+sub parse_chunk {
+    my ($self, $chunk) = @_;
+
+    my $parser = $self->get_parser();
     eval {
         $parser->parse_chunk( $chunk );
     };
@@ -47,14 +61,13 @@ sub parse_chunk {
 
 sub finish {
     my $self = shift;
-    my $options = $self->{ParserOptions};
-    if (! $options) {
-        $options->{LibParser} = XML::LibXML->new;
-    }
-    my $parser = $options->{LibParser};
+
+    my $parser = $self->get_parser();
     if ($parser) {
         $parser->parse_chunk("", 1);
     }
+
+    $self->clean_parser();
 }
 
 1;
