@@ -6,6 +6,21 @@ use Carp qw(croak);
 
 our $VERSION = '0.00005';
 
+sub DESTROY {
+    my $self = shift;
+
+    my $option = $self->{ParserOptions};
+    if (! $option) {
+        return;
+    }
+    my $parser = $option->{LibParser};
+    if (! $parser) {
+        return;
+    }
+    # break a possible circular reference    
+    $parser->set_handler( undef );
+}
+
 sub parse_chunk {
     my ($self, $chunk) = @_;
     my $options = $self->{ParserOptions};
@@ -25,8 +40,6 @@ sub parse_chunk {
         croak( "SAX Exception not implemented, yet; Data ended before document ended\n" );
     }
 
-    # break a possible circular reference    
-    $parser->set_handler( undef );
     if ( $@ ) {
         croak $@;
     }
