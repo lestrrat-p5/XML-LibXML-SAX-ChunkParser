@@ -2,6 +2,7 @@ Changes
 =======
 
 {{$NEXT}}
+    - Fix issue #1, and add Test::Fatal
 
 0.00007 2014-03-25T12:41:24Z
     - Fix rt#94173 by freeing the handler at finish time
