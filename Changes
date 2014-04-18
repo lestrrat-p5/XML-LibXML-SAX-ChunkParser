@@ -2,6 +2,8 @@ Changes
 =======
 
 {{$NEXT}}
+
+0.00008 2014-04-18T04:52:59Z
     - Fix issue #1, and add Test::Fatal
 
 0.00007 2014-03-25T12:41:24Z

@@ -72,8 +72,8 @@
          "web" : "https://github.com/lestrrat/XML-LibXML-SAX-ChunkParser"
       }
    },
-   "version" : "0.00007",
+   "version" : "0.00008",
    "x_contributors" : [
-      "Daisuke Maki <lestrrat+github@gmail.com>"
+      "lestrrat <lestrrat+github@gmail.com>"
    ]
 }
