@@ -3,8 +3,14 @@ use strict;
 our $AUTOLOAD;
 use Data::Dumper;
 use Test::More;
+use XML::LibXML;
 
 my @EVENTS = (
+    ($XML::LibXML::VERSION >= 2.0129 ?
+    {
+        Event => 'set_document_locator'
+    }
+    : ()),
     {
         Event => 'start_document'
     },
@@ -108,8 +114,10 @@ sub AUTOLOAD {
 
 package main;
 use strict;
-use Test::More( tests => 23 );
+use Test::More;
 use XML::SAX;
+
+plan tests => $XML::LibXML::VERSION >= 2.0129 ? 25 : 23;
 
 XML::SAX->add_parser( q{XML::LibXML::SAX::ChunkParser} );
 
